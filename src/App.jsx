@@ -23,10 +23,10 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className='bg-gray-50 py-6 lg:py-8'>
         <Outlet />
       </main>
-      <footer>Footer</footer>
+      {/* <footer>Footer</footer> */}
     </>
   );
 };
