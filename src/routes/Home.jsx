@@ -53,10 +53,10 @@ const Home = () => {
             src='/assets/empy-states/list-search.svg'
             alt='Results not found'
           />
-          <p class='text-2xl text-center font-bold text-slate-900 mb-2 sm:text-4xl'>
+          <p className='text-2xl text-center font-bold text-slate-900 mb-2 sm:text-4xl'>
             Ups!... no results found
           </p>
-          <p class='text-xl'>Please try another search</p>
+          <p className='text-xl'>Please try another search</p>
         </div>
       )}
     </section>
