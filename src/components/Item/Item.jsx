@@ -11,7 +11,7 @@ const Item = ({ className = '', image, brand, model, price, onClick }) => {
         <h3 className='font-secondary text-lg text-slate-900'>
           {brand} - {model}
         </h3>
-        <p className='text-sm text-slate-800'>{price ? `${price}€` : ''}</p>
+        <p className='text-sm text-slate-800'>{price ? `${price} EUR` : ''}</p>
       </div>
     </li>
   );
