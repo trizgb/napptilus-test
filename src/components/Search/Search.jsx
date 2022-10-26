@@ -3,7 +3,7 @@ const Search = ({ className, placeholder, value, onChange }) => {
     <div className={className}>
       <div className='relative w-max'>
         <input
-          className='py-2 pl-2 pr-8 bg-transparent border-b border-b-slate-900'
+          className='py-2 pl-2 pr-8 bg-transparent border-b-2 border-b-slate-900'
           placeholder={placeholder}
           value={value}
           onChange={onChange}

@@ -3,10 +3,14 @@ import { useState } from 'react';
 import useProductDetail from '../hooks/useProductDetail';
 import { addToCart } from '../services';
 import Cookies from 'js-cookie';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const Detail = () => {
   const { id } = useParams();
   const product = useProductDetail(id);
+  const { setCount } = useContext(CartContext);
+
   const [draft, setDraft] = useState({
     colorCode: '',
     storageCode: '',
@@ -21,23 +25,30 @@ const Detail = () => {
 
   const handleAddToCart = async () => {
     try {
-      const cart = await addToCart(
-        product?.id,
-        draft.colorCode,
-        draft.colorCode,
-      );
+      if (draft.storageCode !== '' && draft.colorCode !== '') {
+        const cart = await addToCart(
+          product?.id,
+          draft.colorCode,
+          draft.storageCode,
+        );
 
-      if (cookie) {
-        Cookies.set('cart_count', Number(cookie) + cart.count, {
-          expires: expirationDate,
-        });
+        if (cookie) {
+          const total = Number(cookie) + cart.count;
+          Cookies.set('cart_count', total, {
+            expires: expirationDate,
+          });
+          setCount(total);
+        } else {
+          Cookies.set('cart_count', cart.count, {
+            expires: expirationDate,
+          });
+          setCount(cart.count);
+        }
+
+        return cart;
       } else {
-        Cookies.set('cart_count', cart.count, {
-          expires: expirationDate,
-        });
+        window.alert('Selecciona un color y un almacenamiento');
       }
-
-      return cart;
     } catch (error) {
       console.log('Error', error);
     }

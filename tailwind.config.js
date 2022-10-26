@@ -11,7 +11,10 @@ module.exports = {
         secondary: ['Bebas Neue', 'cursive'],
       },
       gridTemplateColumns: {
-        'auto-fill-250': 'repeat(auto-fill, minmax(200px, 1fr))',
+        'auto-fill-256': 'repeat(auto-fill, minmax(256px, 1fr))',
+      },
+      maxWidth: {
+        '8xl': '88rem',
       },
     },
   },

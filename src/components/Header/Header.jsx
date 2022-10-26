@@ -1,11 +1,14 @@
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 import Cookies from 'js-cookie';
 
 const Header = () => {
+  const { count } = useContext(CartContext);
   const cookie = Cookies.get('cart_count');
 
   return (
     <header className='w-full p-4 bg-white'>
-      <div className='flex justify-between items-center'>
+      <div className='w-full flex justify-between items-center max-w-8xl mx-auto'>
         <div>
           <a href='/'>Logo</a>
         </div>
@@ -15,7 +18,7 @@ const Header = () => {
             shopping_bag
           </span>
           <span className='absolute top-4 h-full w-full right-0 text-xs font-bold text-center'>
-            {cookie || 0}
+            {!isNaN(count) ? count : cookie}
           </span>
         </div>
       </div>

@@ -37,17 +37,29 @@ const Home = () => {
   ));
 
   return (
-    <div className='px-4 lg:px-6'>
+    <section className='px-4 max-w-8xl mx-auto lg:px-6'>
       <Search
         className='mb-6 flex justify-end'
         placeholder='Search'
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <section>
-        <ul className='grid grid-cols-auto-fill-250 gap-4'>{productsList}</ul>
-      </section>
-    </div>
+      {productsList?.length > 0 ? (
+        <ul className='grid grid-cols-auto-fill-256 gap-6'>{productsList}</ul>
+      ) : (
+        <div className='flex flex-col justify-center items-center'>
+          <img
+            className='w-[500px] max-w-[90vw]'
+            src='/assets/empy-states/list-search.svg'
+            alt='Results not found'
+          />
+          <p class='text-2xl text-center font-bold text-slate-900 mb-2 sm:text-4xl'>
+            Ups!... no results found
+          </p>
+          <p class='text-xl'>Please try another search</p>
+        </div>
+      )}
+    </section>
   );
 };
 
