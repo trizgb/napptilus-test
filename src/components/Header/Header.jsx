@@ -10,7 +10,9 @@ const Header = () => {
     <header className='w-full p-4 bg-white'>
       <div className='w-full flex justify-between items-center max-w-8xl mx-auto'>
         <div>
-          <a href='/'>Logo</a>
+          <a href='/'>
+            <h1 className='font-logo text-lg lg:text-3xl'>MobVice</h1>
+          </a>
         </div>
         <div>Breadcrumbs</div>
         <div className='relative flex'>

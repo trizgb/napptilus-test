@@ -20,9 +20,6 @@ const Detail = () => {
   const date = new Date();
   const expirationDate = new Date(date.getTime() + 60 * 60000);
 
-  const camera1 = Array(product?.primaryCamera)?.map((x) => <span>{x}</span>);
-  const camera2 = Array(product?.secondaryCmera)?.map((x) => <span>{x}</span>);
-
   const handleAddToCart = async () => {
     try {
       if (draft.storageCode !== '' && draft.colorCode !== '') {
@@ -55,44 +52,54 @@ const Detail = () => {
   };
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2'>
-      <section className='flex justify-center items-center bg-white'>
+    <section className='bg-white grid grid-cols-1 max-w-8xl mx-auto p-4 md:grid-cols-2 lg:px-6'>
+      <div className='flex justify-center'>
         <img
           src={product?.imgUrl}
           alt={`${product?.brand} ${product?.model}`}
         />
-      </section>
-      <section>
-        <div>
-          <h3 className='font-secondary text-lg text-slate-900'>
+      </div>
+      <div className='flex flex-col space-y-4'>
+        <div className='flex flex-col space-y-3'>
+          <h3 className='font-secondary text-xl text-slate-900'>
             {product?.brand} - {product?.model}
           </h3>
-          <ul>
+          <ul className='flex flex-col space-y-1 text-xs'>
             <li>
-              <p>{product?.cpu}</p>
+              <p>CPU: {product?.cpu}</p>
             </li>
             <li>
-              <p>{product?.ram}</p>
+              <p>RAM: {product?.ram}</p>
             </li>
             <li>
-              <p>{product?.os}</p>
+              <p>OS: {product?.os}</p>
             </li>
             <li>
-              <p>{product?.displayResolution}</p>
+              <p>Display resolution: {product?.displayResolution}</p>
             </li>
             <li>
-              <p>{product?.battery}</p>
+              <p>Battery: {product?.battery}</p>
             </li>
             <li>
-              <ul>
-                <li>Primary camera: {camera1} </li>
-                <li>Secondary camera: {camera2} </li>
-              </ul>
+              <p>
+                Primary camera:{' '}
+                {product?.primaryCamera.toString().replaceAll(',', ', ')}
+              </p>
             </li>
-            <li>Dimentions: {product?.dimentions}</li>
-            <li>Weight: {product?.weight}</li>
-            <li>{product?.price} EUR</li>
+            <li>
+              <p>
+                Secondary camera:{' '}
+                {product?.secondaryCmera.toString().replaceAll(',', ', ')}
+              </p>
+            </li>
+            <li>
+              <p>Dimentions: {product?.dimentions}</p>
+            </li>
+            <li>
+              <p>Weight: {product?.weight || '-'}</p>
+            </li>
           </ul>
+          <p className='text-sm'>{product?.price} EUR</p>
         </div>
         <div>
           <select
@@ -118,13 +125,14 @@ const Detail = () => {
           </select>
         </div>
         <button
-          className='py-2 px-4 bg-slate-900 text-white font-medium hover:bg-slate-800'
+          type='button'
+          className='w-full py-3 px-6 bg-slate-900 text-white font-medium hover:bg-slate-800 md:w-max'
           onClick={handleAddToCart}
         >
           Add to cart
         </button>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

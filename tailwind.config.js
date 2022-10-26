@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        logo: ['Audiowide', 'cursive'],
         secondary: ['Bebas Neue', 'cursive'],
       },
       gridTemplateColumns: {
