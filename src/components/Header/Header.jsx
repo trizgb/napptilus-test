@@ -15,11 +15,13 @@ const Header = () => {
       <Link to='/'>
         <span className='hover:underline'>Home</span>
       </Link>
-      <span>/</span>
       {paths.length > 1 ? (
-        <Link to={pathname}>
-          <span className='hover:underline'>{paths[1]}</span>
-        </Link>
+        <>
+          <span>/</span>
+          <Link to={pathname}>
+            <span className='hover:underline'>{paths[1]}</span>
+          </Link>
+        </>
       ) : null}
     </nav>
   );

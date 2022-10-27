@@ -60,6 +60,52 @@ const Detail = () => {
     }
   };
 
+  const handleSelect = (e) => {
+    const target = e.target;
+
+    if (target.name === 'colorCode') {
+      setDraft({ ...draft, colorCode: target.value });
+    }
+
+    if (target.name === 'storageCode') {
+      setDraft({ ...draft, storageCode: target.value });
+    }
+  };
+
+  const colorSelector = product?.options?.colors.map((color, index) => (
+    <label
+      key={index}
+      className='flex space-x-2 p-3 cursor-pointer border border-gray-200 rounded-lg'
+      htmlFor={color.code}
+    >
+      <input
+        name='colorCode'
+        type='radio'
+        id={color.code}
+        value={color.code}
+        onChange={handleSelect}
+      />
+      <span>{color.name}</span>
+    </label>
+  ));
+
+  const storageSelector = product?.options?.storages.map((storage, index) => (
+    <label
+      key={index}
+      className='flex space-x-2 p-3 cursor-pointer border border-gray-200 rounded-lg'
+      htmlFor={storage.code}
+    >
+      <input
+        name='storageCode'
+        type='radio'
+        id={storage.code}
+        value={storage.code}
+        onChange={handleSelect}
+      />
+      <span>{storage.name}</span>
+    </label>
+  ));
+
   return (
     <section className='bg-white max-w-8xl mx-auto h-full p-4 lg:p-6'>
       <button
@@ -118,40 +164,15 @@ const Detail = () => {
                 <p>Weight: {product?.weight || '-'}</p>
               </li>
             </ul>
+            <div className='text-sm'>
+              <p className='mb-2'>Select a color</p>
+              <div className='flex space-x-4'>{colorSelector}</div>
+            </div>
+            <div className='text-sm'>
+              <p className='mb-2'>Select a storage</p>
+              <div className='flex space-x-4'>{storageSelector}</div>
+            </div>
             <p className='text-sm'>{product?.price} EUR</p>
-          </div>
-          <div>
-            <select
-              name='colorCode'
-              defaultValue={draft.colorCode}
-              onChange={(e) =>
-                setDraft({
-                  ...draft,
-                  colorCode: e.target.value,
-                  storageCode: draft.storageCode,
-                })
-              }
-            >
-              <option value=''>Color</option>
-              {product?.options.colors.map((c) => (
-                <option value={c.code}>{c.name}</option>
-              ))}
-            </select>
-            <select
-              name='storageCode'
-              onChange={(e) =>
-                setDraft({
-                  ...draft,
-                  colorCode: draft.colorCode,
-                  storageCode: e.target.value,
-                })
-              }
-            >
-              <option value=''>Storage</option>
-              {product?.options.storages.map((s) => (
-                <option value={s.code}>{s.name}</option>
-              ))}
-            </select>
           </div>
           <button
             type='button'
